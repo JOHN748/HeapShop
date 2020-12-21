@@ -2,7 +2,7 @@
 <?php include ('functions/functions.php'); ?>
 <!-- Session -->
 <?php include ('includes/session.php') ?>
-<?php ?>
+
 <?php $category_details = category_details(); ?>
 <?php $sub_category_details = sub_category_details(); ?>
 <?php $featured_products = featured_products(); ?>
