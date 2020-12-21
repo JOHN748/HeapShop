@@ -1,0 +1,36 @@
+.btn-eye{
+	background-color: #1E90FF;
+	color: white;
+}
+
+.btn-check{
+	background-color: #32CD32 !important;
+	color: white !important;
+}
+
+.btn-times{
+	background-color: #FF0000 !important;
+	color: white !important;
+}
+
+.btn-pencil-alt{
+	background-color: #FFBD34;
+	color: white;
+}
+
+.btn-trash-alt{
+	background-color: #FF0000;
+	color: white;
+}
+
+@media (max-width: 768px) {
+	.md_rl {
+    	float: left !important;
+  	}
+}
+
+@media (min-width: 769px) {
+	.md_rl {
+		float: right !important;
+  	}
+}
