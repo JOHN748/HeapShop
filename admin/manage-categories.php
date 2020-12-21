@@ -141,10 +141,10 @@
                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th class="text-center"><input type="checkbox" class="" id="select_all"/></th>
+                                            <th class="text-center"><input type="checkbox" id="select_all"/></th>
                                             <th class="text-center">Id</th>
                                             <th class="text-center">Category Image</th>
-                                            <th class="text-center">Categories</th>
+                                            <th class="text-center">Categories</th> 
                                             <th class="text-center">Category Description</th>
                                             <th class="text-center">Actions</th>
                                         </tr>
@@ -154,8 +154,8 @@
                                         <?php foreach ($category_details as $key => $category_detail): ?>
                                         <tr>
                                             <td class="text-center">
-                                                <input type="checkbox" class="checkbox" name="ids[]" id="select_img" value="<?php echo $category_detail['id'];?>"/>
-                                                <input type="checkbox" class="checkbox imgbox" name="imgs[]" value="<?php echo $category_detail['category_image'];?>"/>
+                                                <input type="checkbox" class="checkbox select_img" name="ids[]" value="<?php echo $category_detail['id'];?>"/>
+                                                <input type="checkbox" class="checkbox" name="imgs[]" value="<?php echo $category_detail['category_image'];?>"/>
                                             </td>
                                             <td class="text-center"><?php echo $key + 1; ?></td>
                                             <td class="text-center">
@@ -221,6 +221,46 @@
 
 <!-- Default JS -->
 <?php include 'includes/footer/footer-scripts.php'; ?>
+
+<script>
+
+$(document).ready(function(){
+    $('#select_all').on('click',function(){
+        if(this.checked){
+            $('.checkbox').each(function(){
+                this.checked = true;
+            });
+        }else{
+             $('.checkbox').each(function(){
+                this.checked = false;
+            });
+        }
+    });
+
+    $('.select_img').on('click',function(){
+
+        if(this.checked){
+        
+            $(this).siblings().each(function(){
+                this.checked = true;
+            });
+        }else{
+             $(this).siblings().each(function(){
+                this.checked = false;
+            });
+        }
+    });
+
+    $('.checkbox').on('click',function(){
+        if($('.checkbox:checked').length == $('.checkbox').length){
+            $('#select_all').prop('checked',true);
+        }else{
+            $('#select_all').prop('checked',false);
+        }
+    });
+});
+
+</script>
 
 <!-- Datatable JS -->
 <?php include 'includes/footer/datatables-scripts.php'; ?>

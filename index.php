@@ -19,47 +19,6 @@
     <?php include 'includes/header/meta-tags.php'; ?>
     <!-- Default CSS -->
     <?php include 'includes/header/header-styles.php'; ?>
-
-    <style>
-
-/* CATEGORY SLIDER */
-      
-.category {
-     position: relative;
-     display: flex;
-     width: 100px;
-     flex-direction: column;
-     min-width: 0;
-     word-wrap: break-word;
-     background-color: #fff;
-     background-clip: border-box;
-     border: 1px solid #d2d2dc;
-     border-radius: 11px;
-     -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
-     -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
-     box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
-}
-
-.category .category-body {
-     padding: 1rem 1rem;
-}
-
-.category-body {
-    flex: 1 1 auto;
-    padding: 1.25rem
-}
-
-.category_img {
-     height: 67px
-}
-
-
-.slick-slide {
-     margin: 10px
-}
-
-    </style>
-
 </head>
 
 <!-- Body Section -->

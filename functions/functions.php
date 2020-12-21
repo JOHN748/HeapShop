@@ -203,6 +203,19 @@ function loggedin_user(){
 
 }
     
+// ********** REMOVE FOLDER ********* //
+
+function Remove($dir) {
+    $structure = glob(rtrim($dir, "/").'/*');
+    if (is_array($structure)) {
+        foreach($structure as $file) {
+            if (is_dir($file)) recursiveRemove($file);
+            elseif (is_file($file)) unlink($file);
+        }
+    }
+    rmdir($dir);
+}
+
 
 // ********** USER DETAILS ********** //
 
@@ -692,9 +705,14 @@ error_reporting(0);
 if (isset($_POST["multi-cdelete"])) {
     if (count($_POST["ids"]) > 0 ) {
 
-        $all = implode(",", $_POST["ids"]);
-        $sql =mysqli_query($db,"DELETE FROM categories WHERE id in ($all)");
-        if ($sql) {
+        $imgs = implode(",", $_POST["imgs"]);
+        $all  = implode(",", $_POST["ids"]);
+
+		foreach ($imgs as $img) {
+			unlink('../assets/images/categories/'.$img);
+		}
+
+        if(mysqli_query($db,"DELETE FROM categories WHERE id in ($all)")){
             $_SESSION['success'] ="Category has been deleted successfully";
         } else {
             $_SESSION['success'] ="Error while deleting. Please Try again."; 
