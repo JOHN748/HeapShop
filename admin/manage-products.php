@@ -254,7 +254,7 @@
                                                     </button>
                                                 <?php endif ?>
 
-                                                <a href="edit-product?<?php echo $product_detail['slug']; ?>" 
+                                                <a href="edit-product.php?edit-product=<?php echo $product_detail['id'] ?>" 
                                                 class="btn btn-pencil-alt mr-2">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>

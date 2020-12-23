@@ -132,8 +132,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Category Name</label>
-                                            <select name="category_id" id="categories" class="form-control">
-                                                <option>Select Category</option>  
+                                            <select name="category_id" id="categories" class="form-control" required>
+                                                <option value="">Select Category</option>  
                                                 <?php 
                                                     $result   = mysqli_query($db, "SELECT * FROM categories ORDER BY id ASC");
                                                     while($data=mysqli_fetch_array($result))
@@ -149,8 +149,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Subcategory Name</label>
-                                            <select name="sub_category_id" id="sub_categories" class="form-control">
-
+                                            <select name="sub_category_id" id="sub_categories" class="form-control" required>
+                                                <option value="">Select Category First</option>
                                             </select>
                                         </div> 
                                     </div>
@@ -212,7 +212,6 @@
 <script src="assets/libs/form-element/file-input.js"></script>
 <script src="assets/libs/form-element/form-element.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 

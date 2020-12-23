@@ -1043,6 +1043,36 @@ function add_product(){
 }
 
 
+// Edit Product
+
+if (isset($_GET['edit-product'])) {
+
+	$product_id = $_GET['edit-product'];
+
+	global $db, $set_pid, $set_pname, $set_pprice, $set_pmrp, $set_pquantity, $set_pshort_desc, $set_pdesc, $set_pcat, $set_psubcat,
+		   $set_pslug;
+
+	$query = "SELECT * FROM products WHERE id = $product_id";
+	
+	$results = mysqli_query($db, $query);
+
+	$set_pdetail = mysqli_fetch_array($results);
+
+	$set_pid         = $set_pdetail['id'];
+	$set_pname 		 = $set_pdetail['product_name'];
+	$set_pmrp 		 = $set_pdetail['mrp'];
+	$set_pprice 	 = $set_pdetail['price'];
+	$set_pquantity	 = $set_pdetail['quantity'];
+	$set_pshort_desc = $set_pdetail['short_desc'];
+	$set_pdesc 		 = $set_pdetail['description'];
+	$set_pfimage 	 = $set_pdetail['featured_image'];
+	$set_pcat 	     = $set_pdetail['categories_id'];
+	$set_psubcat     = $set_pdetail['sub_categories_id'];
+	$set_pslug       = $set_pdetail['slug'];
+
+}
+
+
 // Publish & Unpublish Product
 
 	if (isset($_POST['publish'])) {
