@@ -138,7 +138,7 @@
                                 </div>
 
                                 <!-- User Table -->
-                                <table id="datatable" class="table table-striped table-hover table-bordered dt-responsive nowrap"
+                                <table id="datatable" class="table table-striped table-hover table-bordered display nowrap"
                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead class="thead-dark">
                                         <tr>

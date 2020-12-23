@@ -262,8 +262,8 @@
                         <span>Users</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="add-user">Add User</a></li>
-                        <li><a href="manage-users">Manage Users</a></li>
+                        <li><a href="add-user.php">Add User</a></li>
+                        <li><a href="manage-users.php">Manage Users</a></li>
                     </ul>
                 </li>
 

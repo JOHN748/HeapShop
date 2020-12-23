@@ -137,7 +137,7 @@
                                 </div>
 
                                 <!-- User Table -->
-                                <table id="datatable" class="table table-striped table-hover table-bordered dt-responsive nowrap"
+                                <table id="datatable" class="table table-striped table-hover table-bordered display nowrap"
                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead class="thead-dark">
                                         <tr>
@@ -155,12 +155,13 @@
                                         <?php foreach ($sub_category_details as $key => $sub_category_detail): ?>
                                         <tr>
                                             <td class="text-center">
-                                                <input type="checkbox" class="checkbox" name="ids[]" value="<?php echo $sub_category_detail['id'];?>"/>
+                                                <input type="checkbox" class="checkbox select_img" name="ids[]" value="<?php echo $sub_category_detail['id'];?>"/>
+                                                <input type="checkbox" class="checkbox" name="imgs[]" value="<?php echo $sub_category_detail['sub_category_image'];?>" style="display: none;"/>
                                             </td>
                                             <td class="text-center"><?php echo $key + 1; ?></td>
                                             <td class="text-center"><?php echo $sub_category_detail['categories_id']; ?></td>
                                             <td class="text-center">
-                                                <img src="<?php echo 'assets/images/sub-categories/'.$sub_category_detail['sub_category_image'];?>" style="width: 50px; height: 50px;">
+                                                <img src="<?php echo '../assets/images/sub-categories/'.$sub_category_detail['sub_category_image'];?>" style="width: 50px; height: 50px;">
                                             </td>
                                             <td><?php echo $sub_category_detail['sub_categories']; ?></td>
                                             <td><?php echo $sub_category_detail['sub_category_desc']; ?></td>
@@ -180,6 +181,7 @@
                                                 </a>
 
                                                 <input type="hidden" name="delete-id" value="<?php echo $sub_category_detail['id']; ?>">
+                                                <input type="hidden" name="delete-image" value="<?php echo $sub_category_detail['sub_category_image']; ?>">
 
                                                 <button type="submit" name="single-sdelete" class="btn btn-trash-alt">
                                                     <i class="fas fa-trash-alt"></i>

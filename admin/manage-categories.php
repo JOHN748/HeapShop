@@ -137,7 +137,7 @@
                                 </div>
 
                                 <!-- User Table -->
-                                <table id="datatable" class="table table-striped table-hover table-bordered dt-responsive nowrap"
+                                <table id="datatable" class="table table-striped table-hover table-bordered display nowrap"
                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead class="thead-dark">
                                         <tr>
@@ -155,11 +155,11 @@
                                         <tr>
                                             <td class="text-center">
                                                 <input type="checkbox" class="checkbox select_img" name="ids[]" value="<?php echo $category_detail['id'];?>"/>
-                                                <input type="checkbox" class="checkbox" name="imgs[]" value="<?php echo $category_detail['category_image'];?>"/>
+                                                <input type="checkbox" class="checkbox" name="imgs[]" value="<?php echo $category_detail['category_image'];?>" style="display: none;"/>
                                             </td>
                                             <td class="text-center"><?php echo $key + 1; ?></td>
                                             <td class="text-center">
-                                                <img src="<?php echo 'assets/images/categories/'.$category_detail['category_image'];?>" style="width: 50px; height: 50px;">
+                                                <img src="<?php echo '../assets/images/categories/'.$category_detail['category_image'];?>" style="width: 50px; height: 50px;">
                                             </td>
                                             <td><?php echo $category_detail['categories']; ?></td>
                                             <td><?php echo $category_detail['category_description']; ?></td>
@@ -221,46 +221,6 @@
 
 <!-- Default JS -->
 <?php include 'includes/footer/footer-scripts.php'; ?>
-
-<script>
-
-$(document).ready(function(){
-    $('#select_all').on('click',function(){
-        if(this.checked){
-            $('.checkbox').each(function(){
-                this.checked = true;
-            });
-        }else{
-             $('.checkbox').each(function(){
-                this.checked = false;
-            });
-        }
-    });
-
-    $('.select_img').on('click',function(){
-
-        if(this.checked){
-        
-            $(this).siblings().each(function(){
-                this.checked = true;
-            });
-        }else{
-             $(this).siblings().each(function(){
-                this.checked = false;
-            });
-        }
-    });
-
-    $('.checkbox').on('click',function(){
-        if($('.checkbox:checked').length == $('.checkbox').length){
-            $('#select_all').prop('checked',true);
-        }else{
-            $('#select_all').prop('checked',false);
-        }
-    });
-});
-
-</script>
 
 <!-- Datatable JS -->
 <?php include 'includes/footer/datatables-scripts.php'; ?>

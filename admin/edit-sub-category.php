@@ -98,6 +98,7 @@
 
                                     <div class="text-center mt-4">
                                         <input type="hidden" name="update_scat_id" value="<?php echo $set_scatid; ?>">
+                                        <input type="hidden" name="old_subcatimg" value="<?php echo $set_scat_image; ?>">
 
                                         <button type="submit" name="update_sub_category" class="btn btn-primary">
                                             Update Sub-Category

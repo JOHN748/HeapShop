@@ -680,6 +680,9 @@ if (isset($_POST['update_category'])) {
 	$update_cat_image  =  $_FILES['category_image']['name'];
 	$temp_name =  $_FILES['category_image']['tmp_name'];
 
+	$oldimg = $_POST['old_catimg'];
+	$oldimg_path ="../assets/images/categories/$oldimg";
+
 	if(empty($update_cat_image)){
 		$query = "UPDATE categories SET categories='$update_categories', category_description='$update_cat_desc' WHERE id = $update_cat_id";		
 
@@ -689,8 +692,8 @@ if (isset($_POST['update_category'])) {
 	}else{
 		$query = "UPDATE categories SET categories='$update_categories', category_description='$update_cat_desc', category_image='$update_cat_image' WHERE id = $update_cat_id";
 		
-		move_uploaded_file($temp_name, "assets/images/categories/$update_cat_image");  
-
+		unlink($oldimg_path);
+		move_uploaded_file($temp_name, "../assets/images/categories/$update_cat_image");  
 		mysqli_query($db, $query);
 		$_SESSION['success']  = "Category Successfully Updated!";
 		header('location: manage-categories.php');
@@ -705,14 +708,13 @@ error_reporting(0);
 if (isset($_POST["multi-cdelete"])) {
     if (count($_POST["ids"]) > 0 ) {
 
-        $imgs = implode(",", $_POST["imgs"]);
+        $imgs = $_POST["imgs"];
         $all  = implode(",", $_POST["ids"]);
-
-		foreach ($imgs as $img) {
-			unlink('../assets/images/categories/'.$img);
-		}
-
+		
         if(mysqli_query($db,"DELETE FROM categories WHERE id in ($all)")){
+            foreach ($imgs as $img) {
+				unlink('../assets/images/categories/'.$img);
+	        }
             $_SESSION['success'] ="Category has been deleted successfully";
         } else {
             $_SESSION['success'] ="Error while deleting. Please Try again."; 
@@ -799,7 +801,7 @@ function add_sub_category($cat_id){
 		
 		$query = "INSERT INTO sub_categories(categories_id, sub_categories, sub_category_image) 
 					  VALUES('$cat_id', '$sub_category', '$sub_cat_image')";
-		move_uploaded_file($temp_name, "assets/images/sub-categories/$sub_cat_image");  
+		move_uploaded_file($temp_name, "../assets/images/sub-categories/$sub_cat_image");  
 
 		mysqli_query($db, $query);
         $_SESSION['success'] ="Sub-Category has been successfully Added!"; 
@@ -846,6 +848,9 @@ if (isset($_POST['update_sub_category'])) {
 	$update_scat_image  =  $_FILES['sub_category_image']['name'];
 	$temp_name =  $_FILES['sub_category_image']['tmp_name'];
 
+	$oldimg = $_POST['old_subcatimg'];
+	$oldimg_path = "../assets/images/sub-categories/$oldimg";
+
 	if(empty($update_scat_image)){
 		$query = "UPDATE sub_categories SET categories_id='$update_scategories', sub_categories ='$update_sub_category' WHERE id = $update_scat_id";		
 
@@ -855,8 +860,8 @@ if (isset($_POST['update_sub_category'])) {
 	}else{
 		$query = "UPDATE sub_categories SET categories_id='$update_scategories', sub_categories ='$update_sub_category',  sub_category_image='$update_scat_image' WHERE id = $update_scat_id";
 		
-		move_uploaded_file($temp_name, "assets/images/sub-categories/$update_scat_image");  
-
+		unlink($oldimg_path);
+		move_uploaded_file($temp_name, "../assets/images/sub-categories/$update_scat_image");  
 		mysqli_query($db, $query);
 		$_SESSION['success']  = "Sub-Category Successfully Updated!";
 		header('location: manage-sub-categories.php');
@@ -871,11 +876,15 @@ error_reporting(0);
 if (isset($_POST["multi-sdelete"])) {
     if (count($_POST["ids"]) > 0 ) {
 
+        $imgs = $_POST["imgs"];
         $all = implode(",", $_POST["ids"]);
-        $sql =mysqli_query($db,"DELETE FROM sub_categories WHERE id in ($all)");
-        if ($sql) {
-            $_SESSION['success'] ="Sub-Category has been deleted successfully";
-        } else {
+
+        if(mysqli_query($db,"DELETE FROM sub_categories WHERE id in ($all)")){;
+        	foreach ($imgs as $img) {
+        		unlink("../assets/images/sub-categories/".$img);
+        	}
+        	$_SESSION['success'] ="Sub-Category has been deleted successfully";
+        }else {
             $_SESSION['success'] ="Error while deleting. Please Try again."; 
         }
 
@@ -889,14 +898,16 @@ if (isset($_POST["multi-sdelete"])) {
 
 if(isset($_POST['single-sdelete'])){
     $delete_id = $_POST['delete-id'];
-    sub_category_delete($delete_id);
+    $delete_image = $_POST['delete-image'];
+    sub_category_delete($delete_id, $delete_image);
 }
 
-function sub_category_delete($delete_id){
+function sub_category_delete($delete_id, $delete_image){
     
     global $db;
 
     if(mysqli_query($db, "DELETE FROM sub_categories WHERE id =$delete_id")){
+    	unlink("../assets/images/sub-categories/".$delete_image);
         $_SESSION['success'] = "Sub-Category has been deleted successfully";
     }else{
         $_SESSION['success'] ="Something went wrong, Try again";

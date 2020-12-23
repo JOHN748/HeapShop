@@ -81,6 +81,7 @@
 
                                     <div class="text-center mt-4">
                                         <input type="hidden" name="update_cat_id" value="<?php echo $set_cat_id; ?>">
+                                        <input type="hidden" name="old_catimg" value="<?php echo $set_cat_image; ?>">
 
                                         <button type="submit" name="update_category" class="btn btn-primary">
                                             Update Category
