@@ -147,8 +147,7 @@
 
                                     <div class="form-group mt-2 mb-2">
                                         <label class=" form-control-label">Product Slug</label>
-                                        <input type="text" name="product_slug" placeholder="Enter the Product Slug" class="form-control">
-                                        <span class="text-danger"><?php echo $slug_err; ?></span>
+                                        <input type="text" name="product_slug" placeholder="Enter the Product Slug" value="<?php echo $set_pslug ?>" class="form-control">
                                     </div>
 
                                     <div class="text-center mt-4">
