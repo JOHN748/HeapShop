@@ -8,7 +8,7 @@
     </div>
 
     <div class="card-body">
-        <div class="row featured_products">
+        <div class="row featured_product">
 
             <div class="product-card">
                 <div class="product-img">                    

@@ -59,27 +59,7 @@
                 <!-- Content Start -->
 
                 <!-- Notification Message -->
-                <?php if (isset($_SESSION['success'])) : ?>
-                    <script>
-                        const Toast = Swal.mixin({
-                          toast: true,
-                          position: 'top',
-                          showConfirmButton: false,
-                          timer: 3500,
-                          timerProgressBar: true,
-                          didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                          }
-                        })
-                         
-                        Toast.fire({
-                          icon: 'success',
-                          title: '<?php echo $_SESSION['success']; ?>'
-                        })
-                    </script>
-                    <?php unset($_SESSION['success']); ?>
-                <?php endif ?>
+                <?php include 'includes/messages.php'; ?>
                 
                 <!-- Main Content -->
                 <div class="row">
@@ -162,7 +142,7 @@
                                     </div>
                                 </div>
 
-                                <!-- User Table -->
+                                <!-- Product Table -->
                                 <table id="datatable" class="table table-striped table-hover table-bordered display nowrap"
                                        style="width: 100%;">
                                     <thead class="thead-dark" style="width: 100% !important;">
@@ -188,7 +168,8 @@
                                         <?php foreach ($product_details as $key => $product_detail): ?>
                                         <tr>
                                             <td class="text-center">
-                                                <input type="checkbox" class="checkbox" name="ids[]" value="<?php echo $product_detail['id'];?>"/>
+                                                <input type="checkbox" class="checkbox select_img" name="ids[]" value="<?php echo $product_detail['id'];?>"/>
+                                                <input type="checkbox" class="checkbox" name="imgs[]" value="<?php echo $product_detail['product_name'];?>" style="display: none;"/>
                                             </td>
                                             <td class="text-center"><?php echo $key + 1; ?></td>
                                             <td class="text-center"><?php echo $product_detail['product_name']; ?></td>
@@ -260,6 +241,7 @@
                                                 </a>
                                                 
                                                 <input type="hidden" name="delete-id" value="<?php echo $product_detail['id']; ?>">
+                                                <input type="hidden" name="delete-image" value="<?php echo $product_detail['product_name']; ?>">
 
                                                 <button type="submit" name="single-pdelete" class="btn btn-trash-alt">
                                                     <i class="fas fa-trash-alt"></i>

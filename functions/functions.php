@@ -209,7 +209,7 @@ function Remove($dir) {
     $structure = glob(rtrim($dir, "/").'/*');
     if (is_array($structure)) {
         foreach($structure as $file) {
-            if (is_dir($file)) recursiveRemove($file);
+            if (is_dir($file)) Remove($file);
             elseif (is_file($file)) unlink($file);
         }
     }
@@ -955,7 +955,7 @@ function makeSlug(String $string){
 $product_name = $categories_id = $sub_categories_id = $mrp = $price = $quantity = $short_desc = $description = $product_slug =
 $featured_image = $gallery_images = $status = $featured_product = $added_by = "";
 
-$product_err = $slug_err = "";
+$product_err = $fimg_err = $gimg_err = $slug_err = "";
 
 if (isset($_POST['add_product'])) {
 	add_product();
@@ -964,7 +964,8 @@ if (isset($_POST['add_product'])) {
 function add_product(){
 	
 	global $db, $product_name, $categories_id, $sub_categories_id, $mrp, $price, $quantity, $short_desc, $description,
-	$product_slug, $featured_image, $gallery_images, $status, $featured_product,  $added_by, $product_err, $slug_err;
+	$product_slug, $featured_image, $gallery_images, $status, $featured_product,  $added_by, $product_err, $fimg_err, $gimg_err,
+	$slug_err;
 
 	$product_name 		= $_POST['product_name'];
 	$categories_id  	= $_POST['category_id'];
@@ -987,25 +988,19 @@ function add_product(){
 	$gallery_images = array_filter($_FILES['gallery_image']['name']); 
 	$total_count = count($_FILES['gallery_image']['name']);
 
-	if(!is_dir("../assets/images/products/$product_name/")) {
-	    mkdir("../assets/images/products/$product_name/");
-	}
-
-	for( $i=0 ; $i < $total_count ; $i++ ) {
-
-	   $tmpFilePath = $_FILES['gallery_image']['tmp_name'][$i];
-	   if ($tmpFilePath != ""){
-	      $newFilePath = "../assets/images/products/$product_name/" . $_FILES['gallery_image']['name'][$i];
-
-	      move_uploaded_file($tmpFilePath, $newFilePath);
-	   }
-	}
-
 	if (!empty($product_name)) {
 		$query = "SELECT * FROM products WHERE product_name='$product_name' LIMIT 1";
 		$results = mysqli_query($db, $query);
 		if (mysqli_num_rows($results) == 1) { 
 			$product_err = "Product is already exists";
+		}
+	}
+
+	if (!empty($featured_image)) {
+		$query = "SELECT * FROM products WHERE featured_image='$featured_image' LIMIT 1";
+		$results = mysqli_query($db, $query);
+		if (mysqli_num_rows($results) == 1) { 
+			$fimg_err = "Image is already exists";
 		}
 	}
 
@@ -1017,10 +1012,10 @@ function add_product(){
 		}
 	}
 
-	if (empty($product_err) && empty($slug_err)) {
+	if (empty($product_err) && empty($fimg_err) && empty($slug_err)) {
 		
 		if(is_array($gallery_images)){ 
-	
+
 	    $gallery_image = implode(',',$gallery_images);       
 
 		$query = "INSERT INTO products (product_name, categories_id, sub_categories_id, mrp, price, quantity, short_desc, 
@@ -1030,16 +1025,33 @@ function add_product(){
 				  '$description', '$slug', '$added_by', '$status', '$featured_image', '$gallery_image', now(), 
 				  $featured_product)";
 
-		move_uploaded_file($temp_name, "../assets/images/products/$product_name/$featured_image");  
+		if(mysqli_query($db, $query)){
+			
+			if(!is_dir("../assets/images/products/$product_name/")) {
+			    mkdir("../assets/images/products/$product_name/");
+			}
+			
+			move_uploaded_file($temp_name, "../assets/images/products/$product_name/$featured_image");
+			
+			for( $i=0 ; $i < $total_count ; $i++ ) {
 
-		mysqli_query($db, $query);
-        $_SESSION['success'] ="Product has been successfully Added!."; 
-		header('location: manage-products.php');
-		
+			   $tmpFilePath = $_FILES['gallery_image']['tmp_name'][$i];
+			   if ($tmpFilePath != ""){
+			      $newFilePath = "../assets/images/products/$product_name/" . $_FILES['gallery_image']['name'][$i];
+
+			      move_uploaded_file($tmpFilePath, $newFilePath);
+			   }
+			}  
+			
+			$_SESSION['success'] ="Product has been successfully Added!.";	
+			header('location: manage-products.php');
+
+			}else{
+				$_SESSION['error'] ="Error Occured in Product Upload!.";
+				header('location: manage-products.php');
+			}
 		}
-	
 	}
-
 }
 
 
@@ -1125,9 +1137,13 @@ error_reporting(0);
 if (isset($_POST["multi-pdelete"])) {
     if (count($_POST["ids"]) > 0 ) {
 
-        $all = implode(",", $_POST["ids"]);
-        $sql =mysqli_query($db,"DELETE FROM products WHERE id in ($all)");
-        if ($sql) {
+        $imgs = $_POST["imgs"];
+        $all  = implode(",", $_POST["ids"]);
+
+        if(mysqli_query($db,"DELETE FROM products WHERE id in ($all)")) {
+        	foreach ($imgs as $img) {
+        		Remove('../assets/images/products/'.$img.'/');
+        	}
             $_SESSION['success'] ="Products has been deleted successfully";
         } else {
             $_SESSION['success'] ="Error while deleting. Please Try again."; 
@@ -1143,14 +1159,16 @@ if (isset($_POST["multi-pdelete"])) {
 
 if(isset($_POST['single-pdelete'])){
     $delete_id = $_POST['delete-id'];
-    product_delete($delete_id);
+    $delete_image = $_POST['delete-image'];
+    product_delete($delete_id, $delete_image);
 }
 
-function product_delete($delete_id){
+function product_delete($delete_id, $delete_image){
     
     global $db;
 
     if(mysqli_query($db, "DELETE FROM products WHERE id =$delete_id")){
+    	Remove('../assets/images/products/'.$delete_image.'/');
         $_SESSION['success'] = "Product has been deleted successfully";
     }else{
         $_SESSION['success'] ="Something went wrong, Try again";

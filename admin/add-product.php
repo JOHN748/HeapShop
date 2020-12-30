@@ -112,6 +112,7 @@
                                                     <input type="file" class="custom-file-input"  name="featured_image" id="customFile" required>
                                                     <label class="custom-file-label" for="customFile">Choose Image</label>
                                                 </div>
+                                                <span class="text-danger"><?php echo $fimg_err; ?></span>
                                             </div>
                                         </div>
 
@@ -123,6 +124,7 @@
                                                     id="customFile" required multiple>
                                                     <label class="custom-file-label" for="customFile">Choose Images</label>
                                                 </div>
+                                                <span class="text-danger"><?php echo $gimg_err; ?></span>
                                             </div>
                                         </div>
                                     </div>
