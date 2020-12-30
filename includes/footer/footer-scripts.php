@@ -6,7 +6,7 @@
 <script src="assets/libs/node-waves/waves.min.js"></script>
 
 <!-- Slider JS -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" src="assets/libs/slick-carousel/slick-carousel.js"></script>
 <script src="assets/js/sliders.js"></script>
 
 <!-- App JS -->

@@ -136,9 +136,8 @@
                                             <i class="fas fa-heart"></i>
                                         </a>
                                     </div>
-                                    <img src="admin/assets/images/products/<?php echo $featured_product['featured_image']; ?>" 
-                                    alt="" class="img-fluid mx-auto p-img">
-                                    <img src="admin/assets/images/products/<?php echo $featured_product['featured_image']; ?>">
+                                    <img src="assets/images/products/<?php echo $featured_product['product_name'] ?>/<?php echo $featured_product['featured_image']; ?>" 
+                                    alt="">
                                     <ul class="list-unstyled mb-0 text-muted product-color">
                                         <li>
                                             <i class="mdi mdi-cart text-warning"></i>

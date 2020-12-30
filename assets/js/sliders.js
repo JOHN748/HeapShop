@@ -1,3 +1,5 @@
+// Category Slider
+
 $(document).ready(function(){
 
 $('.categories').slick({
@@ -38,15 +40,15 @@ $('.categories').slick({
 	});
 });
 
-
+// Featured Product Slider
 
 $(document).ready(function(){
 
-$('.featured_products').slick({
+$('.featured_product').slick({
 
 	dots: false,
-	prevArrow:"<i class='fas fa-eye' style='cursor:pointer;'></i>",
-    nextArrow:"<i class='fas fa-eye' style='cursor:pointer;'></i>",
+	prevArrow:"<i class='fas fa-eye slick-prev' style='cursor:pointer;'></i>",
+    nextArrow:"<i class='fas fa-eye slick-next' style='cursor:pointer;'></i>",
 	infinite: true,
 	speed: 2000,
 	autoplay: true,
@@ -58,7 +60,7 @@ $('.featured_products').slick({
 			{
 			breakpoint: 1024,
 			settings: {
-			slidesToShow: 4,
+			slidesToShow: 5,
 			slidesToScroll: 2,
 			infinite: true,
 			dots: true
@@ -67,14 +69,14 @@ $('.featured_products').slick({
 			{
 			breakpoint: 600,
 			settings: {
-			slidesToShow: 3,
+			slidesToShow: 4,
 			slidesToScroll: 2
 			}
 			},
 			{
 			breakpoint: 480,
 			settings: {
-			slidesToShow: 3,
+			slidesToShow: 4,
 			slidesToScroll: 1
 			}
 			}

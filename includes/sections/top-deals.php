@@ -2,7 +2,9 @@
 
     <div class="head-title">
         <h5 class="title float-left">TOP DEALS</h5>
-        <p class="title float-right">See More</p>
+        <a href="#">
+            <p class="title float-right"><i class="fas fa-eye"></i> View All</p>
+        </a>
     </div>
 
     <div class="card-body">        
