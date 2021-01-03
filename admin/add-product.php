@@ -69,39 +69,97 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <form class="form-horizontal" method="post" action="add-product.php" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="post" action="add-product.php" enctype="multipart/form-data">
+                            
+                            <div class="card">
                                 <div class="card-body card-block">
-                                    
+
+                                    <div class="p-2 border-bottom">                              
+                                        <div class="media align-items-center">
+                                            <div class="mr-3">
+                                                <div class="avatar-xs">
+                                                    <div class="avatar-title rounded-circle bg-soft-primary text-primary">
+                                                        01
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h5 class="font-size-16 mb-1">Product Info</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group mt-3 mb-2">
                                         <label class=" form-control-label">Product Name</label>
-                                        <input type="text" name="product_name" placeholder="Enter the Product Name" class="form-control" required>
+                                        <input type="text" name="product_name" placeholder="Enter the Product Name" class="form-control" value="<?php echo $product_name ?>" required>
                                         <span class="text-danger"><?php echo $product_err; ?></span>
                                     </div>
 
                                     <div class="form-group mb-2">
                                         <label class=" form-control-label">MRP</label>
-                                        <input type="text" name="mrp" placeholder="Enter Product MRP" class="form-control" required>
+                                        <input type="text" name="mrp" placeholder="Enter Product MRP" class="form-control" value="<?php echo $mrp ?>" required>
                                     </div>
                                 
                                     <div class="form-group mb-2">
                                         <label class=" form-control-label">Price</label>
-                                        <input type="text" name="price" placeholder="Enter Product Price" class="form-control" required>
+                                        <input type="text" name="price" placeholder="Enter Product Price" class="form-control" value="<?php echo $price ?>" required>
                                     </div>
                                     
                                     <div class="form-group mb-2">
                                         <label class=" form-control-label">Quantity</label>
-                                        <input type="text" name="quantity" placeholder="Enter Product Quantity" class="form-control" required>
+                                        <input type="text" name="quantity" placeholder="Enter Product Quantity" class="form-control" value="<?php echo $quantity ?>" required>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body card-block">
+
+                                    <div class="p-2 border-bottom">                              
+                                        <div class="media align-items-center">
+                                            <div class="mr-3">
+                                                <div class="avatar-xs">
+                                                    <div class="avatar-title rounded-circle bg-soft-primary text-primary">
+                                                        02
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h5 class="font-size-16 mb-1">Product Details</h5>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="form-group mt-3 mb-2">
                                         <label class=" form-control-label">Short Description</label>
-                                        <textarea name="short_desc" class="form-control" placeholder="Write Short Description.." rows="3" required></textarea>
+                                        <textarea name="short_desc" class="form-control" placeholder="Write Short Description.." rows="3" required><?php echo $short_desc ?></textarea>
                                     </div>
 
                                     <div class="form-group mt-3 mb-3">
                                         <label class=" form-control-label">Description</label>
-                                        <textarea name="description" class="form-control" placeholder="Write Description..." rows="5" required></textarea>
+                                        <textarea name="description" class="form-control" placeholder="Write Description..." rows="5" required><?php echo $description ?></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body card-block">
+
+                                    <div class="p-2 border-bottom mb-3">                              
+                                        <div class="media align-items-center">
+                                            <div class="mr-3">
+                                                <div class="avatar-xs">
+                                                    <div class="avatar-title rounded-circle bg-soft-primary text-primary">
+                                                        03
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h5 class="font-size-16 mb-1">Product Images</h5>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="row">
@@ -110,7 +168,14 @@
                                                 <label>Upload Featured Image</label>
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input"  name="featured_image" id="customFile" required>
-                                                    <label class="custom-file-label" for="customFile">Choose Image</label>
+                                                    <label class="custom-file-label" for="customFile">
+                                                        <?php if(empty($featured_image)): ?>
+                                                        Choose Image
+                                                        <?php else:
+                                                            echo $featured_image;
+                                                            endif
+                                                        ?>
+                                                    </label>
                                                 </div>
                                                 <span class="text-danger"><?php echo $fimg_err; ?></span>
                                             </div>
@@ -125,6 +190,27 @@
                                                     <label class="custom-file-label" for="customFile">Choose Images</label>
                                                 </div>
                                                 <span class="text-danger"><?php echo $gimg_err; ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body card-block">
+
+                                    <div class="p-2 border-bottom mb-3">                              
+                                        <div class="media align-items-center">
+                                            <div class="mr-3">
+                                                <div class="avatar-xs">
+                                                    <div class="avatar-title rounded-circle bg-soft-primary text-primary">
+                                                        04
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h5 class="font-size-16 mb-1">Product Metadata</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -161,30 +247,34 @@
 
                                     <div class="form-group mt-2 mb-2">
                                         <label class=" form-control-label">Product Slug</label>
-                                        <input type="text" name="product_slug" placeholder="Enter the Product Slug" class="form-control" required>
+                                        <input type="text" name="product_slug" placeholder="Enter the Product Slug" class="form-control" value="<?php $product_slug ?>" required>
                                         <span class="text-danger"><?php echo $slug_err; ?></span>
                                     </div>
 
-                                    
+                                </div>
+                            </div>                                    
 
                                     <div class="row mt-4">
                                         <div class="col-md-6">
-                                            <div class="custom-control custom-switch custom-switch-md mb-3" dir="ltr">
-                                                <input type="hidden" name="check" value="0" />
-                                                <input type="checkbox" name="check" value="1" class="custom-control-input" 
-                                                id="customSwitchsizemd">
-                                                <label class="custom-control-label" for="customSwitchsizemd">Active</label>
+                                            <div class="square-switch">
+                                                <input type="hidden" name="check" value="0"/>
+                                                <input type="checkbox" id="square-switch3" switch="bool" name="check" value="1" checked="">
+                                                <label for="square-switch3" data-on-label="Yes" data-off-label="No"></label>
                                             </div>
-
-                                            <button type="submit" name="add_product" class="btn btn-primary">
-                                                Add Product
-                                            </buttons>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="float-right">
+                                                <a href="#" onclick="history.go(-1)" class="btn btn-danger">Cancel</a>
+                                                <button type="submit" name="add_product" class="btn btn-primary">
+                                                    Add Product
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
         

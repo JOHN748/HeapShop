@@ -1004,6 +1004,16 @@ function add_product(){
 		}
 	}
 
+	if (!empty($featured_image)) {
+		if ($_FILES['featured_image']['type'] == "image/jpeg" || $_FILES['featured_image']['type'] == "image/jpg" || 
+			$_FILES['featured_image']['type'] == "image/png") {
+			$fimg_er = false;
+		}else{
+			$fimg_er = true;
+			$fimg_err = "Only JPEG, JPG and PNG Images are Allowed";
+		}
+	}
+
 	if (!empty($slug)) {
 		$query = "SELECT * FROM products WHERE slug='$slug' LIMIT 1";
 		$results = mysqli_query($db, $query);
@@ -1182,7 +1192,7 @@ function featured_products(){
 
 	global $db;
 	
-	$query = "SELECT * FROM products WHERE featured_product = 1 ORDER BY id DESC";
+	$query = "SELECT * FROM products WHERE status = 1 AND featured_product = 1 ORDER BY id DESC";
 	
 	$run_query = mysqli_query($db, $query);
 	
