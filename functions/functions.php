@@ -1014,6 +1014,18 @@ function add_product(){
 		}
 	}
 
+	$imagetype = array(image_type_to_mime_type(IMAGETYPE_GIF), image_type_to_mime_type(IMAGETYPE_JPEG),
+    image_type_to_mime_type(IMAGETYPE_PNG), image_type_to_mime_type(IMAGETYPE_BMP));
+
+	for( $i=0 ; $i < $total_count ; $i++ ) {
+        if (in_array($_FILES['gallery_image']['type'][$i], $imagetype)) {
+        	$gimg_er = "";
+        }else{
+        	$gimg_er = "true";
+			$gimg_err = "Only JPEG, JPG and PNG Images are Allowed";        	
+        }
+	}
+
 	if (!empty($slug)) {
 		$query = "SELECT * FROM products WHERE slug='$slug' LIMIT 1";
 		$results = mysqli_query($db, $query);
@@ -1022,7 +1034,7 @@ function add_product(){
 		}
 	}
 
-	if (empty($product_err) && empty($fimg_err) && empty($slug_err)) {
+	if (empty($product_err) && empty($fimg_err) && empty($gimg_err) && empty($slug_err)) {
 		
 		if(is_array($gallery_images)){ 
 
