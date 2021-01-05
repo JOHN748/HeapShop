@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 $('.categories').slick({
 
-	dots: true,
+	dots: false,
 	infinite: true,
 	speed: 2000,
 	autoplay: true,
@@ -47,8 +47,8 @@ $(document).ready(function(){
 $('.featured_product').slick({
 
 	dots: false,
-	prevArrow:"<i class='fas fa-eye slick-prev' style='cursor:pointer;'></i>",
-    nextArrow:"<i class='fas fa-eye slick-next' style='cursor:pointer;'></i>",
+	prevArrow: $(".prv-btn"),
+	nextArrow: $(".nxt-btn"),
 	infinite: true,
 	speed: 2000,
 	autoplay: true,

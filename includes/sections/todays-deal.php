@@ -7,7 +7,7 @@
         </a>
     </div>
 
-    <div class="card-body">
+    <div class="card-body" style="position: relative;">
         <div class="row featured_product">
 
             <?php foreach ($featured_products as $key => $featured_product): ?>
@@ -32,6 +32,8 @@
             <?php endforeach ?>
 
         </div>
+        <button class="prv-btn"><i class="fas fa-angle-left"></i></button>
+        <button class="nxt-btn"><i class="fas fa-angle-right"></i></button>
     </div>
 
 </div>

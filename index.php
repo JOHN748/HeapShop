@@ -19,6 +19,73 @@
     <?php include 'includes/header/meta-tags.php'; ?>
     <!-- Default CSS -->
     <?php include 'includes/header/header-styles.php'; ?>
+    <style>
+    
+    .prv-btn{
+      background-color: #A0A9C8;
+      color: white;
+      font-size: 1.3rem; 
+      float: left;
+      border:none;  
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      padding: 50px 15px 50px 15px;
+      position: absolute;
+      bottom: 35%;
+      left: 0;
+    }
+
+    .nxt-btn{
+      background-color: #A0A9C8;
+      color: white;
+      font-size: 1.3rem;
+      float: right;
+      border: none;
+      border-bottom-left-radius: 4px;
+      border-top-left-radius: 4px;
+      padding: 50px 15px 50px 15px;
+      position: absolute;
+      bottom: 35%;
+      right: 0;
+    }
+
+    .prv-btn{
+      display: none;
+    }
+
+    .nxt-btn{
+      display: none;
+    }
+
+    .card-body:hover .prv-btn{
+      display: block;
+    }
+
+    .card-body:hover .nxt-btn{
+      display: block;
+    }
+
+    @media (max-width:767px){
+        .prv-btn, .nxt-btn{
+            display:none
+        }
+        .card-body:hover .prv-btn{
+          display: none;
+        }
+        .card-body:hover .nxt-btn{
+          display: none;
+        }
+    }
+
+.slick-next{
+    display: !important none;
+}
+
+.slick-prev{
+    display: !important none;
+}
+
+    </style>
 </head>
 
 <!-- Body Section -->
