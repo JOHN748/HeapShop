@@ -2,7 +2,7 @@
 
     <div class="head-title">
         <h5 class="title float-left">TODAY'S DEAL</h5>
-        <a href="#">
+        <a href="featured-products.php">
             <p class="title float-right"><i class="fas fa-eye"></i> View All</p>
         </a>
     </div>
@@ -19,11 +19,11 @@
                         <a href="" class="pico-left d-flex align-items-center">
                             <i class="far fa-heart"></i>
                         </a>
-                        <span class="price-bf"><?php echo $featured_product['mrp']; ?></span>
+                        <span class="price-bf">$ <?php echo $featured_product['mrp']; ?></span>
                         <a href="" class="pico-right d-flex align-items-center">
                             <i class="fas fa-cart-plus"></i>
                         </a>
-                        <span class="price-af"><?php echo $featured_product['price']; ?></span>
+                        <span class="price-af">$ <?php echo $featured_product['price']; ?></span>
                 </div>
                 <div class="product-body">
                     <p class="fcard_title"><?php echo $featured_product['product_name']; ?></p>

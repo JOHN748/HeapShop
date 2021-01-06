@@ -5,7 +5,8 @@ $(document).ready(function(){
 $('.categories').slick({
 
 	dots: false,
-	infinite: true,
+	arrows: false,
+	infinite: false,
 	speed: 2000,
 	autoplay: true,
 	autoplaySpeed: 2000,
@@ -49,16 +50,16 @@ $('.featured_product').slick({
 	dots: false,
 	prevArrow: $(".prv-btn"),
 	nextArrow: $(".nxt-btn"),
-	infinite: true,
+	infinite: false,
 	speed: 2000,
-	autoplay: true,
+	autoplay: false,
 	autoplaySpeed: 2000,
 	slidesToShow: 4,
 	slidesToScroll: 2,
 
 		responsive: [
 			{
-			breakpoint: 1024,
+			breakpoint: 1400,
 			settings: {
 			slidesToShow: 3,
 			slidesToScroll: 1

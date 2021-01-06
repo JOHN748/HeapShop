@@ -20,70 +20,64 @@
     <!-- Default CSS -->
     <?php include 'includes/header/header-styles.php'; ?>
     <style>
-    
-    .prv-btn{
-      background-color: #A0A9C8;
-      color: white;
-      font-size: 1.3rem; 
-      float: left;
-      border:none;  
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      padding: 50px 15px 50px 15px;
-      position: absolute;
-      bottom: 35%;
-      left: 0;
-    }
+    	.slick-next{
+    		display: none;
+    	}
 
-    .nxt-btn{
-      background-color: #A0A9C8;
-      color: white;
-      font-size: 1.3rem;
-      float: right;
-      border: none;
-      border-bottom-left-radius: 4px;
-      border-top-left-radius: 4px;
-      padding: 50px 15px 50px 15px;
-      position: absolute;
-      bottom: 35%;
-      right: 0;
-    }
+    	.slick-prev{
+    		display: none;
+    	}
 
-    .prv-btn{
-      display: none;
-    }
+    	.prv-btn{
+		    background-color: #A0A9C8;
+		    color: white;
+		    font-size: 1.8rem; 
+		    float: left;
+		    border:none;  
+		    border-top-right-radius: 4px;
+		    border-bottom-right-radius: 4px;
+		    padding: 50px 15px 50px 15px;
+		    position: absolute;
+		    bottom: 35%;
+		    left: 0;
+		    display: none;
+		    box-shadow: 1px 1px 3px 0px #888;
+		}
 
-    .nxt-btn{
-      display: none;
-    }
+		.nxt-btn{
+		    background-color: #A0A9C8;
+		    color: #dfdfdf;
+		    font-size: 1.8rem;
+		    float: right;
+		    border: none;
+		    border-bottom-left-radius: 4px;
+		    border-top-left-radius: 4px;
+		    padding: 50px 15px 50px 15px;
+		    position: absolute;
+		    bottom: 35%;
+		    right: 0;
+		    display: none;
+		    box-shadow: 0px 1px 3px 0px #888;
+		}
 
-    .card-body:hover .prv-btn{
-      display: block;
-    }
+		.card-body:hover .prv-btn, .nxt-btn{
+		    display: block;
+		}
 
-    .card-body:hover .nxt-btn{
-      display: block;
-    }
+		.fproduct{
+		    position: relative;
+		    overflow: hidden;
+		    background-color: #E3F8FF; /* #E3F8FF , #FFE8DF , white */
+		    border: none;
+		    border-radius: 8px;
+		    box-shadow: 0 0px 3px 0px rgb(161, 163, 164);
+		}
 
-    @media (max-width:767px){
-        .prv-btn, .nxt-btn{
-            display:none
-        }
-        .card-body:hover .prv-btn{
-          display: none;
-        }
-        .card-body:hover .nxt-btn{
-          display: none;
-        }
-    }
-
-.slick-next{
-    display: !important none;
-}
-
-.slick-prev{
-    display: !important none;
-}
+		.fproduct:hover{
+		    -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
+		    -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
+		    box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
+		}
 
     </style>
 </head>
@@ -126,7 +120,7 @@
 
                 <?php include 'includes/sections/sliders.php'; ?>
                 <?php include 'includes/sections/top-deals.php'; ?>
-                <?php include 'includes/sections/todays-deal.php'; ?>
+                <?php include 'includes/sections/featured-product.php'; ?>
 
             </div>
             <!-- End Page Container -->
