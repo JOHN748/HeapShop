@@ -6,10 +6,10 @@ $('.categories').slick({
 
 	dots: false,
 	arrows: false,
-	infinite: false,
+	infinite: true,
 	speed: 2000,
 	autoplay: true,
-	autoplaySpeed: 2000,
+	autoplaySpeed: 1500,
 	slidesToShow: 6,
 	slidesToScroll: 2,
 
