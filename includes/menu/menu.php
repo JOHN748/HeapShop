@@ -108,11 +108,38 @@
                 </button>
             </div>
 
+            <div class="dropdown d-none d-lg-inline-block ml-1">
+                <button type="button" class="btn header-item noti-icon waves-effect">
+                    <i class="bx bxs-heart beat-heart"></i>
+                    <span class="badge badge-primary badge-pill" style="position: absolute; top: 18px; left: 24px;">
+                        <?php 
+                            $fcount = $_SESSION['user']['id'];
+                            $result = mysqli_query($db, "SELECT * FROM wishlist WHERE user_id = $fcount");
+                            $rows = mysqli_num_rows($result);
+                            echo $rows;
+                        ?>
+                    </span>
+                </button>
+            </div>
+            
+            <div class="dropdown d-none d-lg-inline-block ml-1">
+                <button type="button" class="btn header-item noti-icon waves-effect">
+                    <i class='bx bxs-cart-alt bx-flashing'></i>
+                    <span class="badge badge-danger badge-pill" style="position: absolute; top: 18px; left: 24px;">
+                        <?php 
+                            $ccount = $_SESSION['user']['id'];
+                            $result = mysqli_query($db, "SELECT * FROM cart WHERE user_id = $ccount");
+                            $rows = mysqli_num_rows($result);
+                            echo $rows;
+                        ?>
+                    </span>
+                </button>
+            </div>
+
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="bx bx-bell bx-tada"></i>
-                    <span class="badge badge-danger badge-pill">3</span>
+                    <i class="bx bxs-collection"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                      aria-labelledby="page-header-notifications-dropdown">
@@ -126,6 +153,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div data-simplebar style="max-height: 230px;">
                         <a href="" class="text-reset notification-item">
                             <div class="media">
@@ -135,29 +163,30 @@
                                     </span>
                                 </div>
                                 <div class="media-body">
-                                    <h6 class="mt-0 mb-1">Your Order is placed</h6>
+                                    <h6 class="mt-0 mb-1">Your Cart</h6>
                                     <div class="font-size-12 text-muted">
-                                        <p class="mb-1">Languages Grammer</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3_min_ago</p>
+                                        <p class="mb-1">View your Products</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                         <a href="" class="text-reset notification-item">
                             <div class="media">
-                                <img src="assets/images/users/avatar-3.jpg"
-                                     class="mr-3 rounded-circle avatar-xs" alt="user-pic">
+                                <div class="avatar-xs mr-3">
+                                    <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                        <i class="bx bxs-heart"></i>
+                                    </span>
+                                </div>
                                 <div class="media-body">
-                                    <h6 class="mt-0 mb-1">James Lemire</h6>
+                                    <h6 class="mt-0 mb-1">Your Wishlists</h6>
                                     <div class="font-size-12 text-muted">
-                                        <p class="mb-1">Simplified English</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1_hrs_ago</p>
+                                        <p class="mb-1">View your Favourites</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
-
                     </div>
+
                     <div class="p-2 border-top">
                         <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
                             <i class="mdi mdi-arrow-right-circle mr-1"></i> View_More
