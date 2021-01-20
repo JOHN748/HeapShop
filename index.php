@@ -6,6 +6,7 @@
 <?php $category_details = category_details(); ?>
 <?php $sub_category_details = sub_category_details(); ?>
 <?php $featured_products = featured_products(); ?>
+<?php $product_details = product_details(); ?>
 
 <!-- HTML Start -->
 <!DOCTYPE html>
@@ -20,66 +21,16 @@
     <!-- Default CSS -->
     <?php include 'includes/header/header-styles.php'; ?>
     <style>
-    	.slick-next{
-    		display: none;
-    	}
 
-    	.slick-prev{
-    		display: none;
-    	}
-
-    	.prv-btn{
-		    background-color: #A0A9C8;
-		    color: white;
-		    font-size: 1.8rem; 
-		    float: left;
-		    border:none;  
-		    border-top-right-radius: 4px;
-		    border-bottom-right-radius: 4px;
-		    padding: 50px 15px 50px 15px;
-		    position: absolute;
-		    bottom: 35%;
-		    left: 0;
-		    display: none;
-		    box-shadow: 1px 1px 3px 0px #888;
-		}
-
-		.nxt-btn{
-		    background-color: #A0A9C8;
-		    color: #dfdfdf;
-		    font-size: 1.8rem;
-		    float: right;
-		    border: none;
-		    border-bottom-left-radius: 4px;
-		    border-top-left-radius: 4px;
-		    padding: 50px 15px 50px 15px;
-		    position: absolute;
-		    bottom: 35%;
-		    right: 0;
-		    display: none;
-		    box-shadow: 0px 1px 3px 0px #888;
-		}
-
-		.card-body:hover .prv-btn, .nxt-btn{
-		    display: block;
-		}
-
-		.fproduct{
-		    position: relative;
-		    overflow: hidden;
-		    background-color: #E3F8FF; /* #E3F8FF , #FFE8DF , white */
-		    border: none;
-		    border-radius: 8px;
-		    box-shadow: 0 0px 3px 0px rgb(161, 163, 164);
-		}
-
-		.fproduct:hover{
-		    -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
-		    -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
-		    box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
-		}
+        .card-actions{
+            position: absolute;
+            bottom: -20%;
+            width: 100%;
+            background-color: black;
+        }
 
     </style>
+
 </head>
 
 <!-- Body Section -->
@@ -98,29 +49,15 @@
             <!-- Page Container -->
             <div class="container-fluid">
 
-                <!-- Notification Message -->
-                <?php if (isset($_SESSION['message'])) : ?>
-                    <script>
-                        Swal.fire({
-                          position: 'center',
-                          icon: 'success',
-                          title : '<h1 style="color:#ff8080; font-family: lemonjelly; font-size: 2em;"><?php echo $_SESSION['message']; ?></h1>',
-                          html: '<h4 style="color: #333300;">Welcome to HeapShop!<h4>',
-                          background: 'url(assets/images/trees.png)',
-                          width: 700,
-                          padding: '1em',
-                          showConfirmButton: false,
-                          timer: 4000
-                        })
-                    </script>
-                    <?php unset($_SESSION['message']); ?>
-                <?php endif ?>
+                <!-- Messages -->
+                <?php include 'includes/messages.php'; ?>
            
                 <!-- Content -->
 
                 <?php include 'includes/sections/sliders.php'; ?>
                 <?php include 'includes/sections/top-deals.php'; ?>
                 <?php include 'includes/sections/featured-product.php'; ?>
+                <?php include 'includes/sections/recent-product.php'; ?>
 
             </div>
             <!-- End Page Container -->

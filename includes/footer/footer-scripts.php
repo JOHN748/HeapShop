@@ -11,3 +11,9 @@
 
 <!-- App JS -->
 <script src="assets/js/app.js"></script>
+
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
