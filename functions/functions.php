@@ -1267,23 +1267,25 @@ function toggleadd_fp($status_id)
 }
 
 
-// Cart
+// Wishlist
 
-function cart_details(){
+function wish_details(){
 
 	global $db;
+
+	$wu_id = $_SESSION['user']['id'];
 	
-	$query = "SELECT * FROM wishlist ORDER BY id DESC";
+	$query = "SELECT * FROM wishlist WHERE user_id = $wu_id ORDER BY id DESC";
 	
 	$run_query = mysqli_query($db, $query);
 	
-	$cart_details = mysqli_fetch_all($run_query, MYSQLI_ASSOC);
+	$wish_details = mysqli_fetch_all($run_query, MYSQLI_ASSOC);
 
 	$getdetails = array();
 
-	foreach ($cart_details as $cart_detail) {
+	foreach ($wish_details as $wish_detail) {
 
-		array_push($getdetails, $cart_detail);
+		array_push($getdetails, $wish_detail);
 
 	}
 
@@ -1291,15 +1293,15 @@ function cart_details(){
 }
 
 
-// Add to Cart 
+// Add to Wishlist 
 
 $add_wuid = $add_wpid = $add_wname = $add_wimage = "";
 
 if (isset($_POST['add_wish'])) {
-	add_to_cart();
+	add_to_wish();
 }
 
-function add_to_cart(){
+function add_to_wish(){
 
 	global $db, $add_wuid, $add_wpid, $add_wname, $add_wimage;
 
@@ -1322,27 +1324,24 @@ function add_to_cart(){
 }
 
 
-// Remove from Cart
-
-$remove_wuid = $remove_wpid = "";
+// Remove from Wishlist
 
 if (isset($_POST['remove_wish'])) {
-	remove_from_cart();
+	remove_from_wish();
 }
 
-function remove_from_cart(){
+function remove_from_wish(){
 
-	global $db, $remove_wuid, $remove_wpid;
+	global $db, $rem_wuid, $rem_wpid;
 
-	$remove_wuid   = $_POST['add_wuid'];
-	$remove_wpid   = $_POST['add_wpid'];
+	$rem_wuid   = $_POST['add_wuid'];
+	$rem_wpid   = $_POST['add_wpid'];
 
-	$sql = "DELETE FROM wishlist WHERE user_id = $remove_wuid AND product_id = $remove_wpid";
+	$sql = "DELETE FROM wishlist WHERE user_id = $rem_wuid AND product_id = $rem_wpid";
 
     if (mysqli_query($db, $sql)) {
 		$_SESSION['success'] = 'Product Removed from Wishlist';
-		header("location: index.php");
-		exit(0);
+	
 	}else{
 		$_SESSION['error'] = 'Error occured in Removal of product from Wishlist';
 	}

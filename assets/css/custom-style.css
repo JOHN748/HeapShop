@@ -1,3 +1,10 @@
+/* FONTS */
+
+@font-face {
+  font-family: lemonjelly;
+  src: url(assets/fonts/jellyfont.ttf);
+}
+
 /* TOP NAVBAR */
 
 .beat-heart {
@@ -148,16 +155,16 @@
 }
 
 .card-body:hover .prv-btn{
-    display: block;
+    display: block !important;
 }
 
 .card-body:hover .nxt-btn{
-    display: block;
+    display: block !important;
 }
 
 @media (max-width:767px){
     .prv-btn, .nxt-btn{
-        display:none
+        display:none;
     }
     .card-body:hover .prv-btn, .nxt-btn{
         display: none;
@@ -258,7 +265,7 @@
 }
 
 .product:hover .card-actions {
-    bottom: 0%; 
+    bottom: 0% !important; 
     transition: .5s;
 }
 

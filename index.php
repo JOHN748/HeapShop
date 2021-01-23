@@ -21,46 +21,19 @@
     <!-- Default CSS -->
     <?php include 'includes/header/header-styles.php'; ?>
     <style>
+       
+.product:hover .card-actions {
+    bottom: 0% !important; 
+    transition: .5s;
+}
 
-        .card-actions{
-            position: absolute;
-            bottom: -20%;
-            width: 100%;
-            background-color: black;
-        }
+.card-body:hover .prv-btn{
+    display: block !important;
+}
 
-        /* TOP NAVBAR */
-
-        .beat-heart {
-          animation:fa-beat 5s ease infinite;
-        }
-        @keyframes fa-beat {
-          0% {
-            transform:scale(1);
-          }
-          5% {
-            transform:scale(1.25);
-          }
-          20% {
-            transform:scale(1);
-          }
-          30% {
-            transform:scale(1);
-          }
-          35% {
-            transform:scale(1.25);
-          }
-          50% {
-            transform:scale(1);
-          }
-          55% {
-            transform:scale(1.25);
-          }
-          70% {
-            transform:scale(1);
-          }
-        }
-
+.card-body:hover .nxt-btn{
+    display: block !important;
+}
 
     </style>
 

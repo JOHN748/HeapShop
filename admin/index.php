@@ -52,29 +52,7 @@
                 <!-- End content Title -->
 
                 <!-- Notification Message -->
-                <?php if (isset($_SESSION['success'])) : ?>
-                    <script>
-                        const Toast = Swal.mixin({
-                          toast: true,
-                          position: 'top',
-                          showConfirmButton: false,
-                          timer: 3500,
-                          timerProgressBar: true,
-                          didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                          }
-                        })
-                         
-                        Toast.fire({
-                          icon: 'success',
-                          title: '<?php echo $_SESSION['success']; ?>'
-                        })
-                    </script>
-                    <?php unset($_SESSION['success']); ?>
-                <?php endif ?>
-
-
+                <?php include 'includes/messages.php'; ?>
                 
                 <!-- Content Section-1 -->
                 <?php include ('includes/sections/section-1.php'); ?>

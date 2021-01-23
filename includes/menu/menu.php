@@ -109,6 +109,7 @@
             </div>
 
             <div class="dropdown d-none d-lg-inline-block ml-1">
+                <a href="wishlist.php">
                 <button type="button" class="btn header-item noti-icon waves-effect">
                     <i class="bx bxs-heart beat-heart"></i>
                     <span class="badge badge-primary badge-pill" style="position: absolute; top: 18px; left: 24px;">
@@ -120,6 +121,7 @@
                         ?>
                     </span>
                 </button>
+                </a>
             </div>
             
             <div class="dropdown d-none d-lg-inline-block ml-1">
