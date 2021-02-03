@@ -119,8 +119,8 @@
 <script src="assets/js/app.js"></script>
 
 <!-- bs custom file input plugin -->
-<script src="assets/libs/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<script src="assets/js/form-element.init.js"></script>
+<script src="assets/libs/form-element/file-input.js"></script>
+<script src="assets/libs/form-element/form-element.js"></script>
 
 </body>
 </html>

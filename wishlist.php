@@ -17,6 +17,19 @@
     <?php include 'includes/header/meta-tags.php'; ?>
     <!-- Default CSS -->
     <?php include 'includes/header/header-styles.php'; ?>
+    <!-- Datatable CSS -->
+    <?php include 'includes/header/datatable-styles.php'; ?>
+
+<style>
+
+.wishlist{
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0px 2px 0px rgb(161, 163, 164);
+}
+
+</style>
+
 </head>
 
 <!-- Body Section -->
@@ -42,7 +55,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Wishlist</h4>
+                            <h4 class="mb-0 font-size-18">
+                                <?php 
+                                    $fcount = $_SESSION['user']['id'];
+                                    $result = mysqli_query($db, "SELECT * FROM wishlist WHERE user_id = $fcount");
+                                    $rows = mysqli_num_rows($result);
+                                ?>
+                                Wishlist (<?php echo $rows ?>)
+                            </h4>
                             <!-- Breadcrumb -->
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
@@ -58,63 +78,54 @@
                 <!-- Content -->
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="datatable" class="table table-striped table-hover table-bordered display nowrap"
-                                       style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th class="text-center">Product</th>
-                                                <th class="text-center">Product Image</th>
-                                                <th class="text-center">Product Name</th>
-                                                <th class="text-center">Remove</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <form method="post">
-                                        <?php foreach ($wish_details as $key => $wish_detail): ?>
-                                            <tr>
-                                                <td class="text-center"><?php echo $key + 1; ?></td>
-                                                <td class="text-center">
-                                                    <img src="assets/images/products/<?php echo $wish_detail['product_name'] ?>/<?php echo $wish_detail['product_image'] ?>" alt="product-img" title="product-img" class="avatar-md">
-                                                </td>
-                                                <td class="text-center">
-                                                    <h5 class="font-size-14 text-truncate"><a href="#" class="text-dark"><?php echo $wish_detail['product_name'] ?></a></h5>
-                                                </td>
-                                                <td class="text-center">
-                                                    <input type="hidden" name="add_wuid" value="<?php echo $_SESSION['user']['id'] ?>">
-                                                    <input type="hidden" name="add_wpid" value="<?php echo $wish_detail['product_id'] ?>">
-                                                    <button name="remove_wish" class="btn btn-danger">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach ?>
-                                        </form>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="row mt-4">
-                                    <div class="col-sm-6">
-                                        <a href="index.php" class="btn btn-secondary">
-                                            <i class="mdi mdi-arrow-left mr-1"></i> Continue Shopping </a>
-                                    </div> <!-- end col -->
-                                    <div class="col-sm-6">
-                                        <div class="text-sm-right mt-2 mt-sm-0">
-                                            <a href="ecommerce-checkout.html" class="btn btn-success">
-                                                <i class="mdi mdi-cart-arrow-right mr-1"></i> Checkout </a>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <?php foreach ($wish_details as $key => $wish_detail): ?>
+                                    <div class="row wishlist p-3 mt-3">
+                                        <div class="col-3 col-md-2 d-flex flex-column justify-content-center">
+                                            <img src="assets/images/products/<?php echo $wish_detail['product_name'] ?>/<?php echo $wish_detail['product_image'] ?>" alt="product-img" title="product-img" class="avatar-md">
                                         </div>
-                                    </div> <!-- end col -->
-                                </div> <!-- end row-->
-
+                                        <div class="col-7 col-md-8 d-flex flex-column justify-content-center">
+                                            <h5 class="font-size-14 text-truncate">
+                                                <a href="#" class="text-dark">
+                                                    <?php echo $wish_detail['product_name'] ?>
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div class="col-2 col-md-2 d-flex flex-column justify-content-center align-items-center">
+                                            <form method="post">
+                                                <input type="hidden" name="add_wuid" value="<?php echo $_SESSION['user']['id'] ?>">
+                                                <input type="hidden" name="add_wpid" value="<?php echo $wish_detail['product_id'] ?>">
+                                                
+                                                <button name="remove_wish" class="btn btn-danger">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </div>    
+                                    </div>
+                                <?php endforeach ?>                                
+                            </div>
+                            <div class="col-md-4">
+                                
                             </div>
                         </div>
-                    </div>
 
-            </div>
-            <!-- End Page Container -->
+                        <div class="row mt-4">
+                            <div class="col-sm-6">
+                                <a href="index.php" class="btn btn-secondary">
+                                    <i class="mdi mdi-arrow-left mr-1"></i> Continue Shopping </a>
+                            </div> <!-- end col -->
+                            <div class="col-sm-6">
+                                <div class="text-sm-right mt-2 mt-sm-0">
+                                    <a href="ecommerce-checkout.html" class="btn btn-success">
+                                        <i class="mdi mdi-cart-arrow-right mr-1"></i> Checkout </a>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> <!-- end row-->
+
+                    </div>
+                </div>
+                <!-- End Page Container -->
         </div>
         <!-- End Page Content -->
         <?php include 'includes/footer/footer.php'; ?>
@@ -129,6 +140,10 @@
 
 <!-- Default JS -->
 <?php include 'includes/footer/footer-scripts.php'; ?>
+
+<!-- Datatable JS -->
+<?php include 'includes/footer/datatables-scripts.php'; ?>
+<script src="assets/libs/datatables/js/datatable.js"></script>
 
 </body>
 </html>

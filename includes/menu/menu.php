@@ -115,9 +115,13 @@
                     <span class="badge badge-primary badge-pill" style="position: absolute; top: 18px; left: 24px;">
                         <?php 
                             $fcount = $_SESSION['user']['id'];
-                            $result = mysqli_query($db, "SELECT * FROM wishlist WHERE user_id = $fcount");
-                            $rows = mysqli_num_rows($result);
-                            echo $rows;
+                            if (!empty($fcount)) {
+                                $result = mysqli_query($db, "SELECT * FROM wishlist WHERE user_id = $fcount");
+                                $rows = mysqli_num_rows($result);
+                                echo $rows;
+                            }else{
+                                echo "0";
+                            }
                         ?>
                     </span>
                 </button>
@@ -130,9 +134,13 @@
                     <span class="badge badge-danger badge-pill" style="position: absolute; top: 18px; left: 24px;">
                         <?php 
                             $ccount = $_SESSION['user']['id'];
-                            $result = mysqli_query($db, "SELECT * FROM cart WHERE user_id = $ccount");
-                            $rows = mysqli_num_rows($result);
-                            echo $rows;
+                            if (!empty($ccount)) {
+                                $result = mysqli_query($db, "SELECT * FROM cart WHERE user_id = $ccount");
+                                $rows = mysqli_num_rows($result);
+                                echo $rows;
+                            }else{
+                                echo "0";
+                            }
                         ?>
                     </span>
                 </button>

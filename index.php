@@ -20,23 +20,6 @@
     <?php include 'includes/header/meta-tags.php'; ?>
     <!-- Default CSS -->
     <?php include 'includes/header/header-styles.php'; ?>
-    <style>
-       
-.product:hover .card-actions {
-    bottom: 0% !important; 
-    transition: .5s;
-}
-
-.card-body:hover .prv-btn{
-    display: block !important;
-}
-
-.card-body:hover .nxt-btn{
-    display: block !important;
-}
-
-    </style>
-
 </head>
 
 <!-- Body Section -->

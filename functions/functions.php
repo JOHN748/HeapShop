@@ -1310,15 +1310,21 @@ function add_to_wish(){
 	$add_wname  = $_POST['add_wname'];
 	$add_wimage = $_POST['add_wimage'];
 
-	$sql = "INSERT INTO wishlist (user_id, product_id, product_name, product_image) VALUES ('$add_wuid', '$add_wpid', '$add_wname',
-		   '$add_wimage')";
+	if (!empty($add_wuid)) {
 
-    if (mysqli_query($db, $sql)) {
-		$_SESSION['success'] = 'Product Added to Wishlist';
-		header("location: index.php");
-		exit(0);
+		$sql = "INSERT INTO wishlist (user_id, product_id, product_name, product_image) VALUES ('$add_wuid', '$add_wpid', '$add_wname',
+			   '$add_wimage')";
+
+	    if (mysqli_query($db, $sql)) {
+			$_SESSION['success'] = 'Product Added to Wishlist';
+			header("location: index.php");
+			exit(0);
+		}else{
+			$_SESSION['error'] = 'Error occured in Adding to Wishlist';
+		}
+
 	}else{
-		$_SESSION['error'] = 'Error occured in Adding to Wishlist';
+		$_SESSION['error'] = 'You must login to Access this feature!';
 	}
 
 }
@@ -1340,7 +1346,7 @@ function remove_from_wish(){
 	$sql = "DELETE FROM wishlist WHERE user_id = $rem_wuid AND product_id = $rem_wpid";
 
     if (mysqli_query($db, $sql)) {
-		$_SESSION['success'] = 'Product Removed from Wishlist';
+		$_SESSION['success'] = "Product Removed from Wishlist";
 	
 	}else{
 		$_SESSION['error'] = 'Error occured in Removal of product from Wishlist';
